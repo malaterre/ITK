@@ -42,6 +42,9 @@ public:
   /** Run-time type information (and related methods). */
   itkTypeMacro(DICOMSCU, Superclass);
 
+  DICOMSCU() {}
+  ~DICOMSCU() {}
+
   /** hostname of DICOM peer. */
   itkSetStringMacro(Peer);
   itkGetStringMacro(Peer);

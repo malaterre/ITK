@@ -24,6 +24,7 @@
 
 namespace itk
 {
+class GDCMSCUInternals;
 
 /** \class GDCMSCU
  * \brief Abstract superclass defines image DICOM interface.
@@ -38,6 +39,23 @@ public:
 
   /** Run-time type information (and related methods). */
   itkTypeMacro(GDCMSCU, Superclass);
+
+  GDCMSCU();
+  ~GDCMSCU();
+  void PrintSelf(std::ostream & os, Indent indent) const;
+
+  void SendEcho();
+
+  typedef std::vector< std::string > FilenamesContainer;
+  void SendStore(FilenamesContainer const & array);
+
+  typedef std::vector< DICOMDataSet > DICOMDataSetContainer;
+  DICOMDataSetContainer const & SendFind( itk::DICOMQuery const & query );
+
+  void SendMove( DICOMDataSetContainer const & array );
+
+private:
+  GDCMSCUInternals *m_Internal;
 
 private:
   GDCMSCU(const Self&);      //purposely not implemented

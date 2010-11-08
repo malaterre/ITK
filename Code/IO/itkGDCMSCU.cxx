@@ -20,4 +20,41 @@
 namespace itk
 {
 
+class GDCMSCUInternals
+{
+public:
+  GDCMSCU::DICOMDataSetContainer m_Array;
+};
+
+GDCMSCU::GDCMSCU()
+{
+  m_Internal = new GDCMSCUInternals;
+}
+
+GDCMSCU::~GDCMSCU()
+{
+  delete m_Internal;
+}
+
+void GDCMSCU::SendEcho()
+{
+}
+
+void GDCMSCU::SendStore(FilenamesContainer const & array)
+{
+}
+
+GDCMSCU::DICOMDataSetContainer const & GDCMSCU::SendFind( itk::DICOMQuery const & query )
+{
+  return m_Internal->m_Array;
+}
+
+void GDCMSCU::SendMove( DICOMDataSetContainer const & array )
+{
+}
+
+void GDCMSCU::PrintSelf(std::ostream & os, Indent indent) const
+{
+}
+
 } // end namespace itk

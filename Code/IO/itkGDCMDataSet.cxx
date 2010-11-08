@@ -15,38 +15,29 @@
  *  limitations under the License.
  *
  *=========================================================================*/
-#ifndef __itkDICOMDataSet_h
-#define __itkDICOMDataSet_h
+#include "itkGDCMDataSet.h"
 
-#include "itkLightProcessObject.h"
-
-#include <string>
+#include "gdcmFile.h"
 
 namespace itk
 {
-
-/** \class DICOMBase
- * \brief Abstract superclass defines image DICOM interface.
- */
-class ITK_EXPORT DICOMDataSet : public Object
+class GDCMDataSetInternals
 {
 public:
-  /** Standard class typedefs. */
-  typedef DICOMDataSet       Self;
-  typedef Object             Superclass;
-  typedef SmartPointer<Self> Pointer;
-
-  /** Run-time type information (and related methods). */
-  itkTypeMacro(DICOMDataSet, Superclass);
-
-  DICOMDataSet() {}
-  ~DICOMDataSet() {}
-
-private:
-  DICOMDataSet(const Self&);      //purposely not implemented
-  void operator=(const Self&); //purposely not implemented
+  gdcm::File m_F;
 };
 
-} // end namespace itk
+/** Constructor */
+GDCMDataSet::GDCMDataSet()
+{
+  m_Internal = new GDCMDataSetInternals;
+}
 
-#endif // __itkDICOMDataSet_h
+/** Destructor */
+GDCMDataSet::~GDCMDataSet()
+{
+  delete m_Internal;
+}
+
+
+} // end namespace itk

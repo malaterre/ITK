@@ -3,6 +3,7 @@ set(ITKIO_SRCS
   itkDICOMQuery.cxx
   itkDICOMDataSet.cxx
   itkGDCMSCU.cxx
+  itkGDCMDataSet.cxx
   itkNiftiImageIO.cxx
   itkNiftiImageIOFactory.cxx
   itkAnalyzeImageIO.cxx
