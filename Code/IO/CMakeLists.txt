@@ -1,5 +1,6 @@
 set(ITKIO_SRCS
   itkDICOMSCU.cxx
+  itkGDCMSCU.cxx
   itkNiftiImageIO.cxx
   itkNiftiImageIOFactory.cxx
   itkAnalyzeImageIO.cxx
