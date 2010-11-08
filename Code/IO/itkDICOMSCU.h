@@ -20,6 +20,9 @@
 
 #include "itkLightProcessObject.h"
 
+#include "itkDICOMDataSet.h"
+#include "itkDICOMQuery.h"
+
 #include <string>
 
 namespace itk
@@ -38,6 +41,67 @@ public:
 
   /** Run-time type information (and related methods). */
   itkTypeMacro(DICOMSCU, Superclass);
+
+  /** hostname of DICOM peer. */
+  itkSetStringMacro(Peer);
+  itkGetStringMacro(Peer);
+
+  /** tcp/ip port number of peer */
+  itkSetMacro(Port, unsigned int);
+  itkGetMacro(Port, unsigned int);
+
+  /** tcp/ip port number for incoming association */
+  itkSetMacro(IncomingPort, unsigned int);
+  itkGetMacro(IncomingPort, unsigned int);
+
+  /** application entity titles: */
+  /** set calling AE title */
+  itkSetStringMacro(AETitle);
+  itkGetStringMacro(AETitle);
+
+  /** set called AE title */
+  itkSetStringMacro(CalledAETitle);
+  itkGetStringMacro(CalledAETitle);
+
+  /** other network options: */
+
+  /// timeout for connection requests.
+  /// 0 => unlimited
+  itkSetMacro(Timeout, unsigned int);
+  itkGetMacro(Timeout, unsigned int);
+
+  /// timeout for ACSE messages
+  itkSetMacro(ACSETimeout, unsigned int);
+  itkGetMacro(ACSETimeout, unsigned int);
+
+  /// timeout for DIMSE messages
+  itkSetMacro(DIMSETimeout, unsigned int);
+  itkGetMacro(DIMSETimeout, unsigned int);
+
+  /// set max receive pdu to n bytes
+  itkSetMacro(MaxPDU, unsigned int);
+  itkGetMacro(MaxPDU, unsigned int);
+
+  virtual void SendEcho() = 0;
+
+  typedef std::vector< std::string > FilenamesContainer;
+  virtual void SendStore(FilenamesContainer const & array) = 0;
+
+  typedef std::vector< DICOMDataSet > DICOMDataSetContainer;
+  virtual DICOMDataSetContainer const & SendFind( itk::DICOMQuery const & query ) = 0;
+
+  virtual void SendMove( DICOMDataSetContainer const & array ) = 0;
+
+private:
+  std::string  m_Peer;
+  unsigned int m_Port;
+  unsigned int m_IncomingPort;
+  std::string  m_AETitle;
+  std::string  m_CalledAETitle;
+  unsigned int m_Timeout;
+  unsigned int m_ACSETimeout;
+  unsigned int m_DIMSETimeout;
+  unsigned int m_MaxPDU;
 
 private:
   DICOMSCU(const Self&);      //purposely not implemented
