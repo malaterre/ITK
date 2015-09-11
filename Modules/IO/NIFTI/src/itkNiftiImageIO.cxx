@@ -1695,7 +1695,7 @@ NiftiImageIO::SetImageIOOrientationFromNIfTI(unsigned short int dims)
   for ( int i = 0; i < max_defined_orientation_dims; i++ )
     {
     xDirection[i] = theMat.m[i][0];
-    if ( i < 2 )
+    if ( i < 2 && xDirection[i] != 0.0 )
       {
       xDirection[i] *= -1.0;
       }
@@ -1709,7 +1709,7 @@ NiftiImageIO::SetImageIOOrientationFromNIfTI(unsigned short int dims)
     for ( int i = 0; i < max_defined_orientation_dims; i++ )
       {
       yDirection[i] = theMat.m[i][1];
-      if ( i < 2 )
+      if ( i < 2 && yDirection[i] != 0.0 )
         {
         yDirection[i] *= -1.0;
         }
@@ -1724,7 +1724,7 @@ NiftiImageIO::SetImageIOOrientationFromNIfTI(unsigned short int dims)
     for ( int i = 0; i < max_defined_orientation_dims; i++ )
       {
       zDirection[i] = theMat.m[i][2];
-      if ( i < 2 )
+      if ( i < 2 && zDirection[i] != 0.0 )
         {
         zDirection[i] *= -1.0;
         }
