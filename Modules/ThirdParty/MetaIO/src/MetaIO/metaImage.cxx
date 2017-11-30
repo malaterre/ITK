@@ -135,7 +135,7 @@ MetaImage(const char *_headerName)
 MetaImage::
 MetaImage(int _nDims,
           const int * _dimSize,
-          const float * _elementSpacing,
+          const double * _elementSpacing,
           MET_ValueEnumType _elementType,
           int _elementNumberOfChannels,
           void *_elementData)
@@ -240,7 +240,7 @@ InitHelper(int _nDims,
 //
 MetaImage::
 MetaImage(int _x, int _y,
-          float _elementSpacingX, float _elementSpacingY,
+          double _elementSpacingX, double _elementSpacingY,
           MET_ValueEnumType _elementType,
           int _elementNumberOfChannels, void *_elementData)
 :MetaObject()
@@ -259,7 +259,7 @@ MetaImage(int _x, int _y,
   ds[0] = _x;
   ds[1] = _y;
 
-  float es[2];
+  double es[2];
   es[0] = _elementSpacingX;
   es[1] = _elementSpacingY;
 
@@ -288,9 +288,9 @@ MetaImage(int _x, int _y,
 //
 MetaImage::
 MetaImage(int _x, int _y, int _z,
-          float _elementSpacingX,
-          float _elementSpacingY,
-          float _elementSpacingZ,
+          double _elementSpacingX,
+          double _elementSpacingY,
+          double _elementSpacingZ,
           MET_ValueEnumType _elementType,
           int _elementNumberOfChannels,
           void *_elementData)
@@ -311,7 +311,7 @@ MetaImage(int _x, int _y, int _z,
   ds[1] = _y;
   ds[2] = _z;
 
-  float es[3];
+  double es[3];
   es[0] = _elementSpacingX;
   es[1] = _elementSpacingY;
   es[2] = _elementSpacingZ;
@@ -490,10 +490,10 @@ void MetaImage::Clear(void)
 
   m_HeaderSize = 0;
 
-  memset(m_SequenceID, 0, 4*sizeof(float));
+  memset(m_SequenceID, 0, sizeof(m_SequenceID));
 
   m_ElementSizeValid = false;
-  memset(m_ElementSize, 0, 10*sizeof(float));
+  memset(m_ElementSize, 0, sizeof(m_ElementSize));
 
   m_ElementType = MET_NONE;
 
@@ -540,7 +540,7 @@ void MetaImage::Clear(void)
 bool MetaImage::
 InitializeEssential(int _nDims,
                     const int * _dimSize,
-                    const float * _elementSpacing,
+                    const double * _elementSpacing,
                     MET_ValueEnumType _elementType,
                     int _elementNumberOfChannels,
                     void * _elementData,
@@ -2493,7 +2493,7 @@ M_Read(void)
     int i;
     for(i=0; i<m_NDims; i++)
       {
-      m_ElementSize[i] = (float)(mF->value[i]);
+      m_ElementSize[i] = mF->value[i];
       }
     mF = MET_GetFieldRecord("ElementSpacing", &m_Fields);
     if(mF && !mF->defined)
