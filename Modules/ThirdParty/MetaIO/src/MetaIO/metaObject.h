@@ -220,6 +220,7 @@ class METAIO_EXPORT MetaObject
       const float * ElementSpacing(void) const;
       float ElementSpacing(int _i) const;
       void  ElementSpacing(const float * _elementSpacing);
+      void  ElementSpacing(const double * _elementSpacing);
       void  ElementSpacing(int _i, float _value);
 
       //    Name(...)

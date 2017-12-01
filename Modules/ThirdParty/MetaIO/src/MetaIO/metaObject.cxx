@@ -930,6 +930,16 @@ ElementSpacing(const float * _elementSpacing)
   }
 
 void MetaObject::
+ElementSpacing(const float * _elementSpacing)
+  {
+  int i;
+  for(i=0; i<m_NDims; i++)
+    {
+    m_ElementSpacing[i] = static_cast<double>(_elementSpacing[i]);
+    }
+  }
+
+void MetaObject::
 ElementSpacing(int _i, float _value)
   {
   m_ElementSpacing[_i] = _value;
