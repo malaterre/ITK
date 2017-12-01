@@ -156,14 +156,13 @@ MetaImage(MetaImage *_im)
   }
 
 //
-MetaImage::
-MetaImage(int _nDims,
+void MetaImage::
+InitHelper(int _nDims,
           const int * _dimSize,
-          const float * _elementSpacing,
+          const double * _elementSpacing,
           MET_ValueEnumType _elementType,
           int _elementNumberOfChannels,
           void *_elementData)
-:MetaObject()
   {
   if(META_DEBUG)
     {
