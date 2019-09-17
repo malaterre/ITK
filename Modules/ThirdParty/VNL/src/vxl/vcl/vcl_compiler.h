@@ -127,7 +127,9 @@
 #   define VCL_GCC_40
 #  endif
 # else
-#  error "Dunno about this gcc"
+//#  error "Dunno about this gcc"
+#  define VCL_GCC_4
+#   define VCL_GCC_41
 # endif
 #endif
 
