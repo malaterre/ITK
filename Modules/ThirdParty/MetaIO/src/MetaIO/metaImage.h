@@ -176,6 +176,7 @@ class METAIO_EXPORT MetaImage : public MetaObject
     const double *  ElementSize(void) const;
     double          ElementSize(int i) const;
     void            ElementSize(const double * _pointSize);
+    void            ElementSize(const float * _pointSize);
     void            ElementSize(int _i, double _value);
 
     MET_ValueEnumType ElementType(void) const;

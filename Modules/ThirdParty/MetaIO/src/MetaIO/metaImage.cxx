@@ -745,22 +745,22 @@ ElementSizeValid(bool _elementSizeValid)
   m_ElementSizeValid = _elementSizeValid;
   }
 
-const float * MetaImage::
+const double * MetaImage::
 ElementSize(void) const
   {
   return m_ElementSize;
   }
 
-float MetaImage::
+double MetaImage::
 ElementSize(int _i) const
   {
   return m_ElementSize[_i];
   }
 
 void MetaImage::
-ElementSize(const float *_elementSize)
+ElementSize(const double*_elementSize)
   {
-  memcpy(m_ElementSize, _elementSize, m_NDims*sizeof(float));
+  memcpy(m_ElementSize, _elementSize, m_NDims*sizeof(*m_ElementSize));
   m_ElementSizeValid = true;
   }
 
@@ -776,7 +776,7 @@ ElementSize(const float *_elementSize)
 
 
 void MetaImage::
-ElementSize(int _i, float _value)
+ElementSize(int _i, double _value)
   {
   m_ElementSize[_i] = _value;
   m_ElementSizeValid = true;
